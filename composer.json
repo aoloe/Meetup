@@ -1,5 +1,5 @@
 {
-    "name": "user3581488/Meetup",
+    "name": "aoloe/php-meetup",
     "type": "library",
     "description": "PHP client for accessing most of the Meetup API",
     "keywords": ["meetup"],
