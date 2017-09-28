@@ -1,9 +1,9 @@
 {
-    "name": "aoloe/php-meetup",
+    "name": "aoloe/meetup",
     "type": "library",
     "description": "PHP client for accessing most of the Meetup API",
     "keywords": ["meetup"],
-    "homepage": "https://github.com/user3581488/Meetup",
+    "homepage": "https://github.com/aoloe/php-meetup",
     "license": "Apache-2.0",
     "require": {
         "php": ">=5.3.3"
