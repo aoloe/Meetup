@@ -417,7 +417,7 @@ class Meetup
     	}
     	
     	//retrieve json and store it internally
-    	$this->_response = json_decode($content);
+    	$this->_response = json_decode($content, true);
     	$status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
    	
     	curl_close($ch);
