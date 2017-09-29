@@ -94,7 +94,7 @@ class Meetup
      *
      * @param array $parameters The parameters passed for this request
      * @return mixed A json object containing response data
-     * @throws Exception if anything goes wrong
+     * @throws \Exception if anything goes wrong
      */
     public function postEvent(array $parameters = array())
     {
@@ -105,7 +105,7 @@ class Meetup
      *
      * @param array $parameters The parameters passed for this request
      * @return mixed A json object containing response data
-     * @throws Exception if anything goes wrong
+     * @throws \Exception if anything goes wrong
      */
     public function updateEvent(array $parameters = array())
     {
@@ -116,7 +116,7 @@ class Meetup
      *
      * @param array $parameters The parameters passed for this request
      * @return mixed A json object containing response data
-     * @throws Exception if anything goes wrong
+     * @throws \Exception if anything goes wrong
      */
     public function deleteEvent(array $parameters = array())
     {
@@ -128,7 +128,7 @@ class Meetup
      *
      * @param array $parameters The parameters passed for this request
      * @return mixed A json object containing response data
-     * @throws Exception if anything goes wrong
+     * @throws \Exception if anything goes wrong
      *
      * @code
      * $meetup->get('/2/event/:id', array('id'=>10));
@@ -147,7 +147,7 @@ class Meetup
      *
      * @param array $parameters The parameters passed for this request
      * @return mixed A json object containing response data
-     * @throws Exception if anything goes wrong
+     * @throws \Exception if anything goes wrong
      *
      * @code
      * $meetup->post('/2/member/:id', array('id'=>10));
@@ -165,7 +165,7 @@ class Meetup
      *
      * @param array $parameters The parameters passed for this request
      * @return mixed A json object containing response data
-     * @throws Exception if anything goes wrong
+     * @throws \Exception if anything goes wrong
      *
      * @note There isn't any PUT supported events at the moment
      */
@@ -181,7 +181,7 @@ class Meetup
      *
      * @param array $parameters The parameters passed for this request
      * @return mixed A json object containing response data
-     * @throws Exception if anything goes wrong
+     * @throws \Exception if anything goes wrong
      *
      * @code
      * $meetup->delete('/2/member/:id', array('id'=>10));
@@ -201,7 +201,7 @@ class Meetup
      * @param string $path The relative path of the request from meetup (not including base path)
      * @param array $parameters The parameters passed for this request
      * @return array An array of the path and parameters modified or un-altered
-     * @throws Exception if anything goes wrong
+     * @throws \Exception if anything goes wrong
      */
     protected function params($path, array $parameters = array())
     {
@@ -218,7 +218,7 @@ class Meetup
                 }
                 else
                 {
-                    throw new Exception("Missing parameter '" . $matches[1][$i] . "' for path '" . $path . "'.");
+                    throw new \Exception("Missing parameter '" . $matches[1][$i] . "' for path '" . $path . "'.");
                 }
             }
         }
@@ -246,7 +246,7 @@ class Meetup
      * to learn about OATH and the consumer details required for authorized access.
      *
      * @param array $parameters The parameters passed for this request
-     * @throws Exception if anything goes wrong
+     * @throws \Exception if anything goes wrong
      * @note The parameter 'grant_type' is automatically included with value 'authorization_code'
      */
     public function access(array $parameters = array())
@@ -259,7 +259,7 @@ class Meetup
      * consumer details required for authorized access.
      *
      * @param array $parameters The parameters passed for this request
-     * @throws Exception if anything goes wrong
+     * @throws \Exception if anything goes wrong
      * @note The parameter 'grant_type' is automatically included with value 'refresh_token'
      */
     public function refresh(array $parameters = array())
@@ -271,7 +271,7 @@ class Meetup
      * prepares the request accordingly.
      *
      * @param array $parameters The parameters passed for this request
-     * @throws Exception if anything goes wrong
+     * @throws \Exception if anything goes wrong
      * @note The parameter 'sign' is automatically included with value 'true' if using an api key
      */
     protected function api($url, $parameters, $action=self::GET)
@@ -348,7 +348,7 @@ class Meetup
             $error = curl_error($ch);
             curl_close($ch);
 
-            throw new Exception("Failed retrieving  '" . $url . "' because of connection issue: ' " . $error . "'.");
+            throw new \Exception("Failed retrieving  '" . $url . "' because of connection issue: ' " . $error . "'.");
         }
 
         //retrieve json and store it internally
@@ -375,7 +375,7 @@ class Meetup
                 $error = 'Status ' . $status;
             }
 
-            throw new Exception("Failed retrieving  '" . $url . "' because of ' " . $error . "'.");
+            throw new \Exception("Failed retrieving  '" . $url . "' because of ' " . $error . "'.");
         }
         else if (is_null($this->_response))
         {
@@ -405,7 +405,7 @@ class Meetup
                     break;
             }
 
-            throw new Exception("Cannot read response by  '" . $url . "' because of: '" . $error . "'.");
+            throw new \Exception("Cannot read response by  '" . $url . "' because of: '" . $error . "'.");
         }
 
         return $this->_response;
