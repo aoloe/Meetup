@@ -342,6 +342,13 @@ class Meetup
         //fetch content
         $content = curl_exec($ch);
 
+        $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        if($httpCode === 404) {
+            curl_close($ch);
+
+            throw new \Exception("Failed retrieving  '" . $url . "': Not found (404).");
+        }
+
         //was there an error on the connection?
         if (curl_errno($ch))
         {
