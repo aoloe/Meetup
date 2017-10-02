@@ -1,16 +1,23 @@
 # Meetup API
-This a very simple, one-file, PHP client for accessing most of the [Meetup API](http://www.meetup.com/meetup_api/).  Some parameters are included behind the scenes so you don't have to using array_merge when the parameters have fixed values like signed or response_type depending on the nature of the request.
+
+This a very simple, one-file, PHP client for accessing most of the [Meetup API](http://www.meetup.com/meetup_api/).  Some parameters are included behind the scenes so you don't have to using `array_merge` when the parameters have fixed values like `signed` or `response_type` depending on the nature of the request.
 
 The code is documented to include more information along with small code snippets in the documentation where applicable.  This library supports OATH, api key, get/put/delete calls, and has several useful stub methods for accessing API functionality from meetup.  There's documentation and comments in the code and a detailed README to help you get started easily using the library.
 
-#Exceptions
+# Exceptions
+
 Exceptions are thrown and can be caught when there's any errors interacting with the API, they are standard exceptions.
 
 ```php
 try
 {
-   $meetup = new Meetup('<api key>');
-   $meetup->getEvents();
+    $meetup = new Meetup(['key' => '<api key>']);
+    $meetup->get(strtr(
+        '/:groupName/events',
+        [
+            ':groupName' => '<you-group-name>'
+        ]
+   ));
 }
 catch(Exception $e)
 {
@@ -18,8 +25,9 @@ catch(Exception $e)
 }
 ```
 
-#Hardcoded parameters
-Underneath there's parameters (depending on the request being made) that get injected using array_merge because these values aren't variable they're fixed.  This way you don't have to know about them or worry about implementing them and if they're duplicated by you it won't matter.  You can just focus on including the core information and using the stub methods to handle the heavy lifting.
+# Hardcoded parameters
+
+Underneath there's parameters (depending on the request being made) that get injected using `array_merge` because these values aren't variable they're fixed.  This way you don't have to know about them or worry about implementing them and if they're duplicated by you it won't matter.  You can just focus on including the core information and using the stub methods to handle the heavy lifting.
 
 ## Quick Start
 
@@ -29,11 +37,17 @@ Underneath there's parameters (depending on the request being made) that get inj
 
 ```php
 require 'meetup.php';
-$meetup = new Meetup(array(
+$meetup = new Meetup([
 	'key' => '<api key>'
-));
+]);
 
 $response = $meetup->getEvents(); //somewhat restricted
+$response = $meetup->get(strtr(
+    '/:groupName/events',
+    [
+        ':groupName' => '<you group name>'
+    ]
+));
 ```
 
 * Get your [Consumer details](https://secure.meetup.com/meetup_api/oauth_consumers/).
@@ -184,18 +198,16 @@ This is a more simplified library for access and interactions covering OATH and 
 
 ## License
 
-<pre>
 Copyright 2013 Fokke Zandbergen
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
 
-   http://www.apache.org/licenses/LICENSE-2.0
+<http://www.apache.org/licenses/LICENSE-2.0>
 
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
-</pre>
